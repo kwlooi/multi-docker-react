@@ -13,6 +13,13 @@ after_success:
   - docker build -t kwlooi/multi-docker-react-nginx ./nginx
   - docker build -t kwlooi/multi-docker-react-server ./server
   - docker build -t kwlooi/multi-docker-react-worker ./worker
+  # login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to docker hub
+  - docker push kwlooi/multi-docker-react-client
+  - docker push kwlooi/multi-docker-react-nginx
+  - docker push kwlooi/multi-docker-react-server
+  - docker push kwlooi/multi-docker-react-worker
 
 # deploy:
 #   provider: elasticbeanstalk
