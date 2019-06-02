@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t kwlooi/sample-react-test -f ./client/Dockerfile.dev
+
+script:
+  - docker run kwlooi/sample-react-test npm test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react"
+  env: "docker-react-env"
+  bucket_name: "elasticbeanstalk-us-east-1-716953936909"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: "$aws_access_key"
+  secret_access_key:
+    secure: "$aws_secret_key"
