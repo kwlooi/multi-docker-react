@@ -1,0 +1,38 @@
+{
+  "AWSEBDockerrunVersion" : 2,
+  "containerDefinitions": [
+    {
+      "name": "client",
+      "image": "kwlooi/multi-docker-react-client:latest",
+      "hostname": "client",
+      "essential": false
+    },
+    {
+      "name": "nginx",
+      "image": "kwlooi/multi-docker-react-nginx:latest",
+      "hostname": "nginx",
+      "essential": true,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "client", "server"
+      ]
+    },
+    {
+      "name": "server",
+      "image": "kwlooi/multi-docker-react-server:latest",
+      "hostname": "api",
+      "essential": false
+    },
+    {
+      "name": "worker",
+      "image": "kwlooi/multi-docker-react-worker:latest",
+      "hostname": "worker",
+      "essential": false
+    }
+  ]
+}
