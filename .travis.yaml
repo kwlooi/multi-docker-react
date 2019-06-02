@@ -8,6 +8,12 @@ before_install:
 script:
   - docker run kwlooi/sample-react-test npm test -- --coverage
 
+after_success:
+  - docker build -t kwlooi/multi-docker-react-client ./client
+  - docker build -t kwlooi/multi-docker-react-nginx ./nginx
+  - docker build -t kwlooi/multi-docker-react-server ./server
+  - docker build -t kwlooi/multi-docker-react-worker ./worker
+
 # deploy:
 #   provider: elasticbeanstalk
 #   region: "us-east-1"
