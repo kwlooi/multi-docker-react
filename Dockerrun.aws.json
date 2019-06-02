@@ -5,13 +5,15 @@
       "name": "client",
       "image": "kwlooi/multi-docker-react-client:latest",
       "hostname": "client",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "nginx",
       "image": "kwlooi/multi-docker-react-nginx:latest",
       "hostname": "nginx",
       "essential": true,
+      "memory": 128,
       "portMappings": [
         {
           "hostPort": 80,
@@ -26,13 +28,15 @@
       "name": "server",
       "image": "kwlooi/multi-docker-react-server:latest",
       "hostname": "api",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "worker",
       "image": "kwlooi/multi-docker-react-worker:latest",
       "hostname": "worker",
-      "essential": false
+      "essential": false,
+      "memory": 128
     }
   ]
 }
