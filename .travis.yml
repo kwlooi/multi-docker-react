@@ -26,15 +26,15 @@ after_success:
   - docker push kwlooi/multi-docker-react-server
   - docker push kwlooi/multi-docker-react-worker
 
-# deploy:
-#   provider: elasticbeanstalk
-#   region: "us-west-2"
-#   app: "Multi-Docker React"
-#   env: "MultiDockerReact-env"
-#   bucket_name: "elasticbeanstalk-us-west-2-716953936909"
-#   bucket_path: "Multi-Docker React"
-#   on:
-#     branch: master
-#   access_key_id: "$aws_access_key"
-#   secret_access_key:
-#     secure: "$aws_secret_key"
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-2"
+  app: "Multi-Docker React"
+  env: "MultiDockerReact-env"
+  bucket_name: "elasticbeanstalk-us-west-2-716953936909"
+  bucket_path: "Multi-Docker React"
+  on:
+    branch: master
+  access_key_id: "$aws_access_key"
+  secret_access_key:
+    secure: "$aws_secret_key"
