@@ -15,22 +15,27 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '3050:80'
+      - '3050:80'          # map port local 3050 to nginx port 80
+    depends_on:
+      - api
+      - client
   api:
     build:
       dockerfile: Dockerfile.dev
       context: ./server
     volumes:
-      - /app/node_modules
-      - ./server:/app
-    environment:
-      - REDIS_HOST=redis
+      - /app/node_modules  # do not update the content of /app/node_modules in the container
+      - ./server:/app      # map the ./server in local to /app in container
+    environment:           # see keys.js for references to these used env variables
+      - REDIS_HOST=redis   # variableName without value is taken from env at runtime
       - REDIS_PORT=6379
       - PGUSER=postgres
       - PGPASSWORD=mypassword
       - PGHOST=postgres
       - PGPORT=5432
       #- PGDATABASE=mydatabase
+    depends_on:
+      - postgres
   client:
     build:
       dockerfile: Dockerfile.dev

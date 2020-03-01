@@ -7,3 +7,5 @@ module.exports = {
   pgPort: process.env.PGPORT,
   pgDatabase: process.env.PGDATABASE
 };
+
+// select .env, then press CMD-D multiple times to multi-select rows
